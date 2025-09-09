@@ -29,12 +29,9 @@ pip install -r requirements.txt
 
 Explain how to run or use the project. Provide code examples if necessary.
 
-## Features
-
-- List
-- Key
-- Features
-
 ## Contact
 
-Contributions are welcome! Please open issues or submit pull requests.
+Miftahul Umam
+
+Email:
+miftahul.umam14@gmail.com
