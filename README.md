@@ -10,9 +10,7 @@ This is part of a DeltaX recruitment, September 2025, in South Korea.
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
+- [Contact](#contact)
 
 ## Installation
 
@@ -23,6 +21,55 @@ Clone the repository and install the dependencies using the following commands:
 git clone https://github.com/miftahulumam/lidar_camera_calib_chessboard.git
 cd lidar_camera_calib_chessboard
 pip install -r requirements.txt
+```
+The folder and file structures in the directory is as follows:
+```
+lidar_camera_calib_chessboard
+            ├── CalibData/
+            |   ├── images/
+            |   |     ├── image_107906765910.png
+            |   |     ├── image_112606640240.png
+            |   |     └── ....
+            |   |   
+            |   ├── pointclouds/
+            |   |     ├── points_107906765910.pcd
+            |   |     ├── points_112606640240.pcd               
+            |   |     └── ....
+            |   |
+            |   ├── cropped_pcd/  # Created after running checkerboard_plane_seg_3d.py
+            |   |     ├── points_107906765910.pcd
+            |   |     ├── points_112606640240.pcd               
+            |   |     └── ....            
+            |   |
+            |   └── checkerboard_pcd/  # Created after running checkerboard_plane_seg_3d.py
+            |         ├── points_107906765910.pcd
+            |         ├── points_112606640240.pcd               
+            |         └── .... 
+            |
+            ├── results/
+            |   ├── 3d_corners/  # Created after running checkerboard_corners_det_3d.py
+            |   |     ├── all_cb_points_3d.npz
+            |   |     ├── points_107906765910.pcd
+            |   |     ├── points_112606640240.pcd               
+            |   |     └── ....
+            |   |
+            |   ├── centroids/  # Created after running checkerboard_corners_det_3d.py
+            |   |     ├── points_107906765910.pcd
+            |   |     ├── points_112606640240.pcd               
+            |   |     └── ....  
+            |   |
+            |   ├── corners/ # Created after running camera_intrinsic_calibration.py (save_fig = True)
+            |   |     ├── image_107906765910.png_corners.png
+            |   |     ├── image_112606640240.png_corners.png
+            |   |     └── ....          
+            |   |
+            |   ├── intrinsics_and_cb_points/ # Created after running camera_intrinsic_calibration.py (save_fig = True)
+            |   |     └── intrinsics_and_cb_points.npz
+            |   |    
+            |   └── cb_plane_equations.npz # Created after running checkerboard_plane_seg_3d.py
+            |
+            └── {all Python scripts}
+            
 ```
 
 ## Usage
