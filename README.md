@@ -73,8 +73,17 @@ lidar_camera_calib_chessboard
 ```
 
 ## Usage
+Run the script with following order:
+* `camera_intrinsic_calibration.py` obtains chessboard points from camera images and perform intrinsic calibration.
+* `checkerboard_plane_seg_3d.py` segments chessboard point cloud data.
+* `checkerboard_corners_det_3d.py` detects/approximates chessboard corner points in point cloud data.
+* `visualize_point_cloud.py` visualizes the result of segmentation and 3D corner approximation.
+* `extrinsic_calibration_ransac.py` performs extrinsic calibration on segmented chessboard point cloud and extracted 2D corner points.
+    * `extrinsic_calibration_selected_frame.py` performs extrinsic calibration using a single selected frames only (points_275491298040.pcd or points_263292668860.pcd)
+* `visualize_projection.py` visualizes the LiDAR projection result after extrinsic calibration.
+``
 
-Explain how to run or use the project. Provide code examples if necessary.
+> Note: The repository pipeline will be updated to streamline the process.
 
 ## Contact
 
