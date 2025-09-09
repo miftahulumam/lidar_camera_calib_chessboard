@@ -14,6 +14,8 @@ This project leverages the OpenCV and Open3D Python libraries for image processi
 
 ## Installation
 
+This codebase is developed and run on Python 3.12.0.
+
 ```bash
 git clone https://github.com/your-username/DeltaX_Assignment.git
 cd DeltaX_Assignment
@@ -30,10 +32,6 @@ Explain how to run or use the project. Provide code examples if necessary.
 - Key
 - Features
 
-## Contributing
+## Contact
 
 Contributions are welcome! Please open issues or submit pull requests.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
