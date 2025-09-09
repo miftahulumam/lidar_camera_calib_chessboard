@@ -1,10 +1,10 @@
 # LiDAR-Camera Extrinsic Calibration using Chessboard Target
 
-This project provides a method for calibrating the extrinsic parameters between a LiDAR sensor and a camera using a chessboard calibration target. The calibration process aligns the coordinate systems of both sensors, enabling accurate sensor fusion for robotics, autonomous vehicles, and computer vision applications.
+This project is part of a DeltaX recruitment in Seoul, South Korea, September 2025.
+
+This repository provides a method for calibrating the extrinsic parameters between a LiDAR sensor and a camera using a chessboard calibration target. The calibration process aligns the coordinate systems of both sensors, enabling accurate sensor fusion for robotics, autonomous vehicles, and computer vision applications.
 
 This project leverages the OpenCV and Open3D Python libraries for image processing and 3D point cloud manipulation.
-
-This is part of a DeltaX recruitment, September 2025, in South Korea.
 
 ## Table of Contents
 
