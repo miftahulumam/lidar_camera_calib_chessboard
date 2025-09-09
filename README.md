@@ -4,6 +4,8 @@ This project provides a method for calibrating the extrinsic parameters between 
 
 This project leverages the OpenCV and Open3D Python libraries for image processing and 3D point cloud manipulation.
 
+This is part of a DeltaX recruitment, September 2025, in South Korea.
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -16,8 +18,10 @@ This project leverages the OpenCV and Open3D Python libraries for image processi
 
 This codebase is developed and run on Python 3.12.0.
 
-The library requirements can be installed using the following command:
+Clone the repository and install the dependencies using the following commands:
 ```bash
+git clone https://github.com/miftahulumam/lidar_camera_calib_chessboard.git
+cd lidar_camera_calib_chessboard
 pip install -r requirements.txt
 ```
 
