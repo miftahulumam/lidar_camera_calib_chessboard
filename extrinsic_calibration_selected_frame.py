@@ -20,7 +20,8 @@ distortion = data['distortion']
 print(len(img_points_list))
 
 # Load selected point cloud
-pcd_file = os.path.join(root_dir, "results", "3d_corners", "points_275491298040.pcd")
+# pcd_file = os.path.join(root_dir, "results", "3d_corners", "points_275491298040.pcd")
+pcd_file = os.path.join(root_dir, "results", "3d_corners", "points_263292668860.pcd")
 print(f"Processing point cloud file: {pcd_file}")
 pcd = o3d.io.read_point_cloud(pcd_file)
 lidar_points = np.array(pcd.points)
@@ -42,6 +43,15 @@ print(f"Using image file: {img_file}")
 img_points = img_points_list[found_images.tolist().index(img_file)]
 obj_points = obj_points_list[found_images.tolist().index(img_file)]
 
+print("Image points shape:", img_points.shape)
+print("Lidar points shape:", lidar_points.shape)
+
+rvecs = []
+tvecs = []
+
+img_points = img_points.reshape(-1, 2)
+lidar_points = lidar_points.reshape(-1, 3)
+
 # Perform calibration to find extrinsic parameters
 # Using OpenCV's solvePnP
 success, rvecs, tvecs = cv2.solvePnP(lidar_points, img_points, K, distortion)
@@ -53,3 +63,25 @@ T = np.eye(4)
 T[:3, :3] = R
 T[:3, 3] = tvecs.flatten()
 print("Transformation Matrix:\n", T)
+
+# reprojection error
+proj_points, _ = cv2.projectPoints(lidar_points, rvecs, tvecs, K, distortion)
+proj_points = proj_points.reshape(-1, 2).astype(np.float32)
+error = cv2.norm(img_points, proj_points, cv2.NORM_L2) / len(proj_points)
+print("Reprojection Error: ", error)    
+
+# calculate reprojection error for all points in found_images
+all_img_points = img_points_list.reshape(-1, 2)
+all_lidar_points = np.array([np.array(
+    o3d.io.read_point_cloud(
+        os.path.join(root_dir, "results", "3d_corners", f"points_{os.path.basename(img_file).split('_')[1].split('.')[0]}.pcd")).points
+        ) for img_file in found_images])
+all_lidar_points = all_lidar_points.reshape(-1, 3)
+
+proj_points_all, _ = cv2.projectPoints(all_lidar_points, rvecs, tvecs, K, distortion)
+proj_points_all = proj_points_all.reshape(-1, 2).astype(np.float32)
+error_all = cv2.norm(all_img_points, proj_points_all, cv2.NORM_L2) / len(proj_points_all)
+print("Overall Reprojection Error for all points: ", error_all)
+
+
+
