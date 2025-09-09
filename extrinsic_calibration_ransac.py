@@ -87,6 +87,9 @@ proj_points = proj_points.reshape(-1, 2).astype(np.float32)
 error = cv2.norm(img_points_list[inliers[:,0]], proj_points, cv2.NORM_L2) / len(proj_points)
 print("Reprojection Error: ", error)
 
+# Number of inliers
+print("Number of inliers:", len(inliers))
+
 # Refine using all inliers
 success, rvecs, tvecs = cv2.solvePnP(lidar_points_list[inliers[:,0]], 
                                        img_points_list[inliers[:,0]], 
