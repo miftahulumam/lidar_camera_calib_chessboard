@@ -16,10 +16,9 @@ This project leverages the OpenCV and Open3D Python libraries for image processi
 
 This codebase is developed and run on Python 3.12.0.
 
+The library requirements can be installed using the following command:
 ```bash
-git clone https://github.com/your-username/DeltaX_Assignment.git
-cd DeltaX_Assignment
-# Add further setup instructions here
+pip install -r requirements.txt
 ```
 
 ## Usage
