@@ -100,6 +100,10 @@ cb_points_data = np.load(os.path.join(root_dir, "results", "3d_corners", "all_cb
 all_cb_points_3d = cb_points_data['all_cb_points_3d']
 centroids = cb_points_data['centroids']
 
+line_equations_3d = np.load(os.path.join(root_dir, "results", "3d_corners", "line_equations_3d.npz"), allow_pickle=True)
+line_points = line_equations_3d["line_point_list"]
+line_directions = line_equations_3d["line_direction_list"]
+
 # load 3D checkerboard corner points point cloud
 for i in range(len(pcd_file_list)):
     print(f"Loading 3D checkerboard points from file: {pcd_file_list[i]}")
@@ -111,8 +115,12 @@ for i in range(len(pcd_file_list)):
     centroid_fname = os.path.join(root_dir, "results", "centroids", os.path.basename(pcd_file_list[i]))
     centr_pcd = o3d.io.read_point_cloud(centroid_fname)
 
+    # load 3D line equations
+    line_fname = os.path.join(root_dir, "results", "boundary_line_vectors", os.path.basename(pcd_list[i]))
+    line_pcd = o3d.io.read_point_cloud(line_fname)
+
     print(f"Visualizing file: {centroid_fname}")
 
     # visualize checkerboard points with corresponding point cloud
-    o3d.visualization.draw_geometries([lidar_points_list[i], cb_pcd, centr_pcd]) #,
+    o3d.visualization.draw_geometries([lidar_points_list[i], cb_pcd, centr_pcd, line_pcd]) #,
     

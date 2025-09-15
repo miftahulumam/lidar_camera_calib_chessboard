@@ -220,3 +220,16 @@ for i in range(len(pcd_list)):
 
     centr_fname = os.path.join(root_dir, "results", "centroids", os.path.basename(pcd_list[i]))
     o3d.io.write_point_cloud(centr_fname, centroid_pcd)
+
+    # save boundary line equation in point cloud
+    line_points = np.array([line_point_list[i] + t * line_direction_list[i] for t in np.linspace(-1, 1, 100)])
+    line_pcd = o3d.geometry.PointCloud()
+    line_pcd.points = o3d.utility.Vector3dVector(line_points)
+    line_pcd.paint_uniform_color([0, 0.4, 0])  # green line
+
+    if not os.path.exists(os.path.join(root_dir, "results", "boundary_line_vectors")):
+        os.makedirs(os.path.join(root_dir, "results", "boundary_line_vectors"))
+
+    line_fname = os.path.join(root_dir, "results", "boundary_line_vectors", os.path.basename(pcd_list[i]))
+    o3d.io.write_point_cloud(line_fname, line_pcd)
+
