@@ -49,11 +49,22 @@ lidar_camera_calib_chessboard
             ├── results/
             |   ├── 3d_corners/  # Created after running checkerboard_corners_det_3d.py
             |   |     ├── all_cb_points_3d.npz
+            |   |     ├── line_equations_3d.npz
             |   |     ├── points_107906765910.pcd
             |   |     ├── points_112606640240.pcd               
             |   |     └── ....
             |   |
-            |   ├── centroids/  # Created after running checkerboard_corners_det_3d.py
+            |   ├── boundary_line_vectors/  # Created after running checkerboard_corners_det_3d_new.py
+            |   |     ├── points_107906765910.pcd
+            |   |     ├── points_112606640240.pcd               
+            |   |     └── ....  
+            |   |
+            |   ├── calibration_results/  # Created after running visualize_projection.py
+            |   |     ├── result_107906765910.png
+            |   |     ├── result_112606640240.png              
+            |   |     └── ....  
+            |   |
+            |   ├── centroids/  # Created after running checkerboard_corners_det_3d_new.py
             |   |     ├── points_107906765910.pcd
             |   |     ├── points_112606640240.pcd               
             |   |     └── ....  
@@ -77,6 +88,7 @@ Run the script with following order:
 * `camera_intrinsic_calibration.py` obtains chessboard points from camera images and perform intrinsic calibration.
 * `checkerboard_plane_seg_3d.py` segments chessboard point cloud data.
 * `checkerboard_corners_det_3d_new.py` detects/approximates chessboard corner points in point cloud data.
+    * `boundary_detection.py` includes functions to detect boundary points and lines/vectors of the chessboard.
 * `visualize_point_cloud.py` visualizes the result of segmentation and 3D corner approximation.
 * `extrinsic_calibration_ransac.py` performs extrinsic calibration on segmented chessboard point cloud and extracted 2D corner points.
     * `extrinsic_calibration_selected_frame.py` performs extrinsic calibration using a single selected frames only (`points_275491298040.pcd` or `points_263292668860.pcd`)
