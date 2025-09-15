@@ -79,7 +79,7 @@ for i, pcd_file in enumerate(pcd_list):
     board_points = segmented_planes[1]
     plane_model = plane_equations[1]
 
-    board_points = board_points.remove_statistical_outlier(nb_neighbors=20, std_ratio=2.0)[0]
+    board_points = board_points.remove_statistical_outlier(nb_neighbors=25, std_ratio=0.3)[0]
 
     if not os.path.exists(os.path.join(root_dir, "CalibData", "checkerboard_pcd")):
         os.makedirs(os.path.join(root_dir, "CalibData", "checkerboard_pcd"))

@@ -72,9 +72,9 @@ root_dir = os.getcwd()
 pcd_dir = os.path.join(root_dir, "CalibData", "pointclouds")
 pcd_list = glob.glob(os.path.join(pcd_dir, "*.pcd"))    
 
-pcd_file = os.path.join(root_dir, "CalibData", "pointclouds", "points_275491298040.pcd")
+# pcd_file = os.path.join(root_dir, "CalibData", "pointclouds", "points_275491298040.pcd")
 # pcd_file = os.path.join(root_dir, "CalibData", "pointclouds", "points_263292668860.pcd")
-# pcd_file = random.choice(pcd_list) 
+pcd_file = random.choice(pcd_list) 
 print(f"Using point cloud file: {pcd_file}")
 
 # Extract number from base filename (format: points_####.pcd)
