@@ -18,7 +18,7 @@ This codebase is developed and run on Python 3.12.0.
 
 Clone the repository and install the dependencies using the following commands:
 ```bash
-git clone https://github.com/miftahulumam/lidar_camera_calib_chessboard.git
+git clone -b update_sept_15 https://github.com/miftahulumam/lidar_camera_calib_chessboard.git
 cd lidar_camera_calib_chessboard
 pip install -r requirements.txt
 ```
