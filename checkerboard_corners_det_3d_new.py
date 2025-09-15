@@ -112,6 +112,8 @@ for i in tqdm(range(len(pcd_list))):
     # print(f"3D Checkerboard points for {i+1}-th point cloud:\n", grid_points)
 
 all_cb_points_3d = np.array(all_cb_points_3d)
+line_point_list = np.array(line_point_list)
+line_direction_list = np.array(line_direction_list)
 
 # visualize all checkerboard points
 all_cb_pcd = o3d.geometry.PointCloud()  
@@ -184,14 +186,14 @@ np.savez(os.path.join(root_dir, "results", "3d_corners", "all_cb_points_3d.npz")
 
 # save 3D line equation
 np.savez(os.path.join(root_dir, "results", "3d_corners", "line_equations_3d.npz"), 
-         line_point_list = np.array(line_point_list),
-         line_direction_list = np.array(line_direction_list))
+         line_point_list = line_point_list,
+         line_direction_list = line_direction_list)
 
 # save checkerboard points in each point cloud to separate files
 assert len(pcd_list) == all_cb_points_3d.shape[0]
 assert len(pcd_list) == len(centroids)
-assert len(pcd_list) == len(line_point_list)
-assert len(pcd_list) == len(line_direction_list)
+assert len(pcd_list) == line_point_list.shape[0]
+assert len(pcd_list) == line_direction_list.shape[0]
 
 for i in range(len(pcd_list)): 
     # save checkerboard 3D corner points

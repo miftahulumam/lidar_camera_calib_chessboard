@@ -56,7 +56,7 @@ def approximate_plane_edges(pcd_path, tolerance=0.01, visualize=False):
     boundary_pcd.paint_uniform_color([1, 0, 0])  # green = boundary points
 
     if visualize:
-        o3d.visualization.draw_geometries([boundary_pcd])
+        o3d.visualization.draw_geometries([boundary_pcd, pcd])
 
     return hull_ls, boundary_pcd
 
@@ -154,11 +154,11 @@ if __name__ == "__main__":
         line_directions.append(line[1])
     
         # Visualize
-        # line_points = np.array([line[0] + t * line[1] for t in np.linspace(-1, 1, 100)])
-        # line_pcd = o3d.geometry.PointCloud()
-        # line_pcd.points = o3d.utility.Vector3dVector(line_points)
-        # line_pcd.paint_uniform_color([0, 0.4, 0])  # green line
-        # o3d.visualization.draw_geometries([line_pcd, boundary_pcd, pcd])    
+        line_points_3d = np.array([line[0] + t * line[1] for t in np.linspace(-1, 1, 100)])
+        line_pcd = o3d.geometry.PointCloud()
+        line_pcd.points = o3d.utility.Vector3dVector(line_points_3d)
+        line_pcd.paint_uniform_color([0, 0.4, 0])  # green line
+        o3d.visualization.draw_geometries([line_pcd, boundary_pcd, pcd])    
 
     # visualize lines in 3D
     line_pcd = o3d.geometry.PointCloud()

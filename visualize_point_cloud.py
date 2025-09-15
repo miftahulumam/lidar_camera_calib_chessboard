@@ -116,7 +116,7 @@ for i in range(len(pcd_file_list)):
     centr_pcd = o3d.io.read_point_cloud(centroid_fname)
 
     # load 3D line equations
-    line_fname = os.path.join(root_dir, "results", "boundary_line_vectors", os.path.basename(pcd_list[i]))
+    line_fname = os.path.join(root_dir, "results", "boundary_line_vectors", os.path.basename(pcd_file_list[i]))
     line_pcd = o3d.io.read_point_cloud(line_fname)
 
     print(f"Visualizing file: {centroid_fname}")
