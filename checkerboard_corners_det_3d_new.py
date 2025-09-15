@@ -55,6 +55,8 @@ cb_points_ = cb_points * CB_SQUARE_SIDE_LENGTH
 
 # Getting the 3D coordinates of the checkerboard points in each point cloud
 all_cb_points_3d = []
+line_point_list = []
+line_direction_list = []
 
 for i in tqdm(range(len(pcd_list))):
     plane_model = cb_plane_equations[i][0]
@@ -73,6 +75,9 @@ for i in tqdm(range(len(pcd_list))):
 
     line_point = line[0]
     line_direction = line[1]/np.linalg.norm(line[1])
+
+    line_point_list.append(line[0])
+    line_direction_list.append(line[1])
 
     # Ensure tangent1 is more horizontal, tangent2 is more vertical
     if abs(line_direction[2]) < 0.5:  # more horizontal
@@ -177,9 +182,16 @@ np.savez(os.path.join(root_dir, "results", "3d_corners", "all_cb_points_3d.npz")
          centroids=centroids,
          all_cb_points_3d=all_cb_points_3d)
 
+# save 3D line equation
+np.savez(os.path.join(root_dir, "results", "3d_corners", "line_equations_3d.npz"), 
+         line_point_list = np.array(line_point_list),
+         line_direction_list = np.array(line_direction_list))
+
 # save checkerboard points in each point cloud to separate files
 assert len(pcd_list) == all_cb_points_3d.shape[0]
 assert len(pcd_list) == len(centroids)
+assert len(pcd_list) == len(line_point_list)
+assert len(pcd_list) == len(line_direction_list)
 
 for i in range(len(pcd_list)): 
     # save checkerboard 3D corner points
