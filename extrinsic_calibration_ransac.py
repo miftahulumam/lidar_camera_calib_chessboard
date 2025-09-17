@@ -87,6 +87,12 @@ proj_points = proj_points.reshape(-1, 2).astype(np.float32)
 error = cv2.norm(img_points_list[inliers[:,0]], proj_points, cv2.NORM_L2) / len(proj_points)
 print("Reprojection Error: ", error)
 
+# Overall reprojection error
+proj_points, _ = cv2.projectPoints(lidar_points_list, rvecs, tvecs, K, distortion)
+proj_points = proj_points.reshape(-1, 2).astype(np.float32)  
+error = cv2.norm(img_points_list, proj_points, cv2.NORM_L2) / len(proj_points)
+print("Total Reprojection Error: ", error)  
+
 # Number of inliers
 print("Number of inliers:", len(inliers))
 
@@ -115,5 +121,10 @@ proj_points = proj_points.reshape(-1, 2).astype(np.float32)
 error = cv2.norm(img_points_list[inliers[:,0]], proj_points, cv2.NORM_L2) / len(proj_points)
 print("Refined Reprojection Error: ", error)    
 
+# Overall reprojection error
+proj_points, _ = cv2.projectPoints(lidar_points_list, rvecs, tvecs, K, distortion)
+proj_points = proj_points.reshape(-1, 2).astype(np.float32)  
+error = cv2.norm(img_points_list, proj_points, cv2.NORM_L2) / len(proj_points)
+print("Total Reprojection Error: ", error)    
 
 
